@@ -604,35 +604,46 @@ const birthdayWords = [
 
 (function() {
   const layer = document.getElementById('wordsLayer');
-  function getPos() {
-    let x, y, attempts = 0;
-    do {
-      x = Math.random() * 90 + 5;
-      y = Math.random() * 90 + 5;
-      attempts++;
-    } while (attempts < 20 && x > 25 && x < 75 && y > 25 && y < 75);
-    return { x, y };
+
+  // 网格均匀分布：10列 x 6行 = 60个格子，每格随机抖动
+  const COLS = 10, ROWS = 6;
+  const cellW = 100 / COLS;
+  const cellH = 100 / ROWS;
+
+  // 打乱顺序，让相邻格子的词语随机
+  const indices = Array.from({length: COLS * ROWS}, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
   }
 
-  for (let i = 0; i < 60; i++) {
+  indices.forEach((idx, i) => {
+    const col = idx % COLS;
+    const row = Math.floor(idx / COLS);
+
+    // 在格子内随机偏移，留边距避免贴边
+    const jitterX = Math.random() * (cellW * 0.6) + cellW * 0.2;
+    const jitterY = Math.random() * (cellH * 0.6) + cellH * 0.2;
+    const x = col * cellW + jitterX;
+    const y = row * cellH + jitterY;
+
     const w = birthdayWords[i % birthdayWords.length];
     const el = document.createElement('div');
     el.className = 'word';
-    const pos = getPos();
     const dur = (Math.random() * 6 + 5).toFixed(2);
-    const delay = (Math.random() * 8).toFixed(2);
+    const delay = (Math.random() * 10).toFixed(2);
     el.style.cssText = `
-      left:${pos.x}%;
-      top:${pos.y}%;
+      left:${x.toFixed(2)}%;
+      top:${y.toFixed(2)}%;
       color:${w.color};
       --dur2:${dur}s;
       --delay:-${delay}s;
-      font-size:${(Math.random()*10 + 11).toFixed(1)}px;
+      font-size:${(Math.random()*8 + 11).toFixed(1)}px;
       text-shadow: 0 0 8px ${w.color};
     `;
     el.textContent = w.text;
     layer.appendChild(el);
-  }
+  });
 })();
 
 // ===== 彩带 =====
