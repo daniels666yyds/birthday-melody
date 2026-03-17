@@ -414,6 +414,49 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ===== 底部情话文字 ===== */
+  .bottom-message {
+    position: fixed;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    pointer-events: none;
+  }
+  .bottom-line1 {
+    font-size: clamp(18px, 2.8vw, 38px);
+    font-weight: 700;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(90deg, #ffe06e, #ff6ec7, #a78bfa, #ffe06e);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite, pulse 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(255,224,110,0.7));
+    letter-spacing: 3px;
+    white-space: nowrap;
+  }
+  .bottom-line2 {
+    font-size: clamp(13px, 1.8vw, 26px);
+    font-weight: 500;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(90deg, #6ecfff, #a78bfa, #ff6ec7, #6ecfff);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite reverse, pulse 2.5s ease-in-out infinite 0.5s;
+    filter: drop-shadow(0 0 10px rgba(110,207,255,0.6));
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body>
@@ -498,6 +541,12 @@
   <div class="birthday-title">生日快乐</div>
   <!-- 第三行：英文不变 -->
   <div class="sub-title">Happy Birthday Melody ✨</div>
+</div>
+
+<!-- 底部情话 -->
+<div class="bottom-message">
+  <div class="bottom-line1">Happy Everyday</div>
+  <div class="bottom-line2">You are always my baby, I love you forever</div>
 </div>
 
 <!-- 音乐按钮 -->
