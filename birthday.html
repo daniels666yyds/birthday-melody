@@ -113,6 +113,21 @@
     filter: drop-shadow(0 0 20px rgba(255,110,199,0.8));
     letter-spacing: 4px;
   }
+  /* 生日快乐 */
+  .birthday-title {
+    font-size: clamp(28px, 4.5vw, 64px);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    background: linear-gradient(90deg, #ffe06e, #ff6ec7, #6ecfff, #ffe06e);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite 0.5s, pulse 2s ease-in-out infinite 0.3s;
+    filter: drop-shadow(0 0 18px rgba(255,224,110,0.8));
+    letter-spacing: 4px;
+  }
   .sub-title {
     font-size: clamp(22px, 3.5vw, 52px);
     font-weight: 700;
@@ -417,7 +432,8 @@
 
 <!-- 中心内容 -->
 <div class="center">
-  <div class="main-title">郑云潇生日快乐</div>
+  <!-- 第一行：姓名 -->
+  <div class="main-title">郑云潇</div>
 
   <!-- 蛋糕 -->
   <div class="cake-wrap">
@@ -478,6 +494,9 @@
     </div>
   </div>
 
+  <!-- 第二行：生日快乐 -->
+  <div class="birthday-title">生日快乐</div>
+  <!-- 第三行：英文不变 -->
   <div class="sub-title">Happy Birthday Melody ✨</div>
 </div>
 
